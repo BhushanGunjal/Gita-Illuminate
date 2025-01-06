@@ -1,6 +1,6 @@
 
 
-```markdown
+
 # GitaIlluminate - AI-Powered Recommendation System
 
 **GitaIlluminate** is an AI-powered application that generates personalized recommendations from the Bhagavad Gita and Hindu mythology based on a user's life situation or query. Powered by **FastAPI** for the backend and **Streamlit** for the frontend, this application is designed to help individuals find answers or guidance from the sacred texts.
