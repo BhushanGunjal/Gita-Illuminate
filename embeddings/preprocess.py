@@ -14,6 +14,8 @@ def preprocess_text(text):
     :param text: Input text (string) to preprocess.
     :return: Preprocessed text as a string.
     """
+
+
     lemmatizer = WordNetLemmatizer()
     stop_words = set(stopwords.words('english'))
     tokens = word_tokenize(text.lower())
@@ -23,5 +25,10 @@ def preprocess_text(text):
         if word.isalnum() and word not in stop_words
     ]
 
-    
-    return ' '.join(processed_tokens)
+
+    tokenized_text = ' '.join(processed_tokens)
+
+
+    return tokenized_text
+
+

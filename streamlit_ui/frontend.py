@@ -1,8 +1,31 @@
 import streamlit as st
 import requests
 import pandas as pd
+import subprocess
+import time
+
+
+
+
 
 API_URL = "http://127.0.0.1:8000/recommendations/"  # Update with your API URL
+
+
+fastapi_process = None
+
+def start_fastapi():
+    global fastapi_process
+    try:
+        # Check if API is already running
+        requests.get(API_URL)
+    except requests.ConnectionError:
+        # If not running, start FastAPI server
+        fastapi_process = subprocess.Popen(["uvicorn", "api.api:app", "--host", "127.0.0.1", "--port", "8000"])
+        time.sleep(2)  # Give some time for the server to start
+
+# Ensure FastAPI server starts
+start_fastapi()
+
 
 # Helper function to fetch recommendations
 def fetch_recommendations(input_text):
@@ -18,8 +41,20 @@ def fetch_recommendations(input_text):
         st.error("Error: Unable to fetch recommendations.")
         return None
 
+
+
+
 # Set page configuration with a title
-st.set_page_config(page_title="GitaIlluminate", page_icon="🕉️", layout="wide")
+st.set_page_config(page_title="गीता-Illuminate  कृष्णं सदा सहायते", page_icon="🕉️", layout="wide")
+
+
+
+
+# Title of the app
+st.markdown('<h1 class="title">🕉️ गीता-Illuminate 🕉️</h1>', unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+
+
 
 # Background and style
 st.markdown(
@@ -34,7 +69,7 @@ st.markdown(
         }
         .stButton>button {
             background-color: #FF8C00;
-            color: white;
+            color: black;
             font-size: 18px;
             padding: 10px 25px;
             border-radius: 10px;
@@ -47,13 +82,13 @@ st.markdown(
             border-radius: 10px;
         }
         .title {
-            font-size: 48px;
+            font-size: 50px;
             color: #8B0000;
             font-family: 'Mukta', sans-serif;
             text-align: center;
         }
         .shloka {
-            font-size: 22px;
+            font-size: 20px;
             color: #2E8B57;
             text-align: center;
             font-family: 'Mukta', serif;
@@ -61,7 +96,7 @@ st.markdown(
         }
         .translation {
             font-size: 18px;
-            color: #555555;
+            color: #FFFFFF;
             text-align: center;
             margin-top: -15px;
             font-family: 'Mukta', serif;
@@ -81,8 +116,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Title of the app
-st.markdown('<h1 class="title">🙏 गीता-Illuminate 🙏</h1>', unsafe_allow_html=True)
+
+
+
+
+
 # Divine Krishna Shloka
 st.markdown(
     """
@@ -96,26 +134,22 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
+
+
 # Add Krishna's image
 st.markdown('<div class="image-container">', unsafe_allow_html=True)
 st.image("krishna_bg.jpg", caption="Lord Krishna", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-# # Divine Krishna Shloka
-# st.markdown(
-#     """
-#     <div class="shloka">
-#         <p><b>सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज ।<br>
-#         अहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः ॥</b></p>
-#         <p class="translation"><i>"Abandon all varieties of religion and just surrender unto Me. I shall deliver you from all sinful reactions. Do not fear."</i><br>
-#         <strong>- Bhagavad Gita 18.66</strong></p>
-#     </div>
-#     """, 
-#     unsafe_allow_html=True
-# )
+
+
 
 # Input form for life situation or query
 user_input = st.text_area("🕉️ Describe your life situation or query:")
+
+
+
 
 # Recommendation Button
 if st.button("🌟 Get Divine Guidance"):
