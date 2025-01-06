@@ -1,0 +1,10 @@
+fastapi
+pydantic
+uvicorn
+pandas
+sentence-transformers
+openpyxl  # Required for handling Excel files
+numpy
+scikit-learn  # For cosine_similarity
+nltk
+streamlit
