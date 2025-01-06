@@ -18,10 +18,14 @@ def main():
     print(f"Loaded {len(raw_data)} rows of data.")
     
     print("Preprocessing dataset...")
-    processed_data = preprocess_dataset(raw_data, PROCESSED_DATA_PATH)
-
     print("Loading embedding model...")
-    embedding_model = SentenceTransformer(MODEL_NAME)
+    processed_data = preprocess_dataset(raw_data)
+
+
+    # Save processed dataset
+    processed_data.to_pickle(PROCESSED_DATA_PATH)  # Save as a pickle for embeddings compatibility
+
+    # embedding_model = SentenceTransformer(MODEL_NAME)
     
     # print("Generating embeddings for the dataset...")
     # processed_data['Embeddings'] = processed_data['Preprocessed_Text'].apply(

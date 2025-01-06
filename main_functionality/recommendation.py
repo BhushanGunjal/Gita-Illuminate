@@ -1,6 +1,6 @@
 import numpy as np
 from .similarity import cosine_similarity_single, jaccard_similarity
-from embeddings.input_preprocess import preprocess_user_input
+from embeddings.preprocess import preprocess_text
 
 def generate_recommendations(user_input, data, embeddings_matrix, embedding_model):
     """
@@ -12,9 +12,10 @@ def generate_recommendations(user_input, data, embeddings_matrix, embedding_mode
     :return: Top recommendations as a DataFrame.
     """
     # Preprocess user input and compute its embedding
-    input_processed = preprocess_user_input(user_input)
-    input_embedding = embedding_model.encode(input_processed)
+    input_processed = preprocess_text(user_input)
+    input_embedding = embedding_model.encode(user_input)
     
+
     # Calculate cosine similarity
     cosine_scores = cosine_similarity_single(input_embedding, embeddings_matrix)
     

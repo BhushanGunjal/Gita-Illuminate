@@ -17,13 +17,16 @@ def preprocess_dataset(file_path, output_path):
     )
     
     # Preprocess the CombinedText
-    data['CombinedText'] = data['CombinedText'].fillna('').apply(preprocess_text)
+    data['Processed_CombinedText'] = data['CombinedText'].fillna('').apply(preprocess_text)
+    
+    # Compute embeddings
+    data['Processed_Embeddings'] = compute_embeddings(data['Processed_CombinedText'].tolist())
     
     # Compute embeddings
     data['Embeddings'] = compute_embeddings(data['CombinedText'].tolist())
+
+    return data
     
-    # Save processed dataset
-    data.to_pickle(output_path)  # Save as a pickle for embeddings compatibility
 
 if __name__ == "__main__":
     INPUT_FILE = "data/main.xlsx"
