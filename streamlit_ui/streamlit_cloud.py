@@ -5,7 +5,7 @@ from main_functionality.recommendation import generate_recommendations
 import numpy as np
 
 # Load preprocessed data
-DATA_PATH = "data/processed_data.pkl"
+DATA_PATH = "data/processed
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 data = pd.read_pickle(DATA_PATH)
