@@ -34,13 +34,33 @@ def fetch_recommendations(input_text):
     :param input_text: Raw user input string.
     :return: List of recommendations.
     """
-    response = requests.post(API_URL, json={"input_text": input_text})
-    if response.status_code == 200:
-        return pd.DataFrame(response.json())
-    else:
-        st.error("Error: Unable to fetch recommendations.")
-        return None
 
+    # Check for suicide-related keywords
+    sensitive_keywords = ["suicide", "end my life", "kill myself", "hopeless", "no reason to live"]
+    if any(keyword in input_text.lower() for keyword in sensitive_keywords):
+        st.error("In the darkest moments, light emerges. We understand you might be going through a tough time. Please know that help is available. ")
+        st.markdown("""
+        **💬 Immediate Support Resources:**
+        - Call a trusted friend or family member.
+        - Contact a mental health professional.
+        - Reach out to a suicide prevention helpline near you:
+          - [India](https://www.aasra.info): 91-9820466726 / 91-22-27546669
+        """, unsafe_allow_html=True)
+        return None
+    
+
+
+    try:
+        response = requests.post(API_URL, json={"input_text": input_text})
+        if response.status_code == 200:
+            return pd.DataFrame(response.json())
+        else:
+            st.error("Error: Unable to fetch recommendations.")
+            return None
+
+    except requests.ConnectionError:
+        st.error("Error: Unable to connect to the API. Please try again later.")
+        return None
 
 
 
@@ -174,3 +194,34 @@ if st.button("🌟 Get Divine Guidance"):
             st.error("Unable to retrieve recommendations. Please try again later.")
     else:
         st.error("Please enter a valid query or life situation.")
+
+
+
+
+# Disclaimer Section
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown(
+    """
+    #### Disclaimer
+    **गीता-Illuminate** is designed as a spiritual guide based on the teachings of the Bhagavad Gita. It provides general guidance and reflections, but it is **not a substitute for professional advice**, including medical, legal, financial, or mental health services. For any serious concerns, especially mental health issues, please consult a qualified professional or contact a helpline in your region.
+    """, 
+    unsafe_allow_html=True
+)
+
+
+
+
+
+# Footer Style
+st.markdown(
+    """
+    <style>
+        hr {
+            border: 0;
+            height: 1px;
+            background: #DAA520;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
