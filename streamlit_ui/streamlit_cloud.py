@@ -4,6 +4,9 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import os
 import sys
+import nltk
+
+
 
 # Get the absolute path of the current file (streamlit_cloud.py)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -15,6 +18,11 @@ sys.path.append(parent_dir)
 # Now you can import from main_functionality
 from main_functionality.recommendation import generate_recommendations
 
+
+# Function to download NLTK resources (using st.cache_resource to avoid redundant downloads)
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 # Load preprocessed data
 DATA_PATH = "data/processed_data.pkl"

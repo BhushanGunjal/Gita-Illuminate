@@ -1,29 +1,16 @@
-
-
-
-import streamlit as st
 import nltk
 
-# Get the current NLTK data paths
-nltk_data_paths = nltk.data.path
-print("Current NLTK Data Paths:", nltk_data_paths)
-# Display it in Streamlit UI
-st.write("Current NLTK Data Paths:", nltk_data_paths)
+
+# Function to download NLTK resources (using st.cache_resource to avoid redundant downloads)
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+
+
 
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-
-# Function to download NLTK resources (using st.cache_resource to avoid redundant downloads)
-@st.cache_resource
-def download_nltk_resources():
-    nltk.download('punkt')
-    nltk.download('wordnet')
-    nltk.download('stopwords')
-
-# Download the resources at app startup
-download_nltk_resources()
-
 
 
 
