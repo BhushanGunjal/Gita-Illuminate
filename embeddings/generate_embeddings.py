@@ -2,7 +2,7 @@ import pandas as pd
 from .preprocess import preprocess_text
 from .compute_embeddings import compute_embeddings
 
-def preprocess_dataset(file_path, output_path):
+def preprocess_dataset(file_path):
     """
     Load dataset, preprocess text, and save embeddings.
     :param file_path: Path to the input Excel file.
