@@ -23,6 +23,7 @@ from main_functionality.recommendation import generate_recommendations
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
+nltk.download('punkt_tab')
 
 # Load preprocessed data
 DATA_PATH = "data/processed_data.pkl"
