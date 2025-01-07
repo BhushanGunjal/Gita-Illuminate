@@ -1,12 +1,16 @@
 import nltk
+
+# Download necessary NLTK resources (should be downloaded once)
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+
+
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
-# Download necessary NLTK resources (should be downloaded once)
-# nltk.download('punkt')
-# nltk.download('wordnet')
-# nltk.download('stopwords')
+
 
 def preprocess_text(text):
     """
