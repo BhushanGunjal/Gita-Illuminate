@@ -3,9 +3,22 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 from main_functionality.recommendation import generate_recommendations
 import numpy as np
+import os
+import sys
+
+# Get the absolute path of the current file (streamlit_cloud.py)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Add the parent directory to sys.path
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+# Now you can import from main_functionality
+from main_functionality.recommendation import generate_recommendations
+
 
 # Load preprocessed data
-DATA_PATH = "data/data/processed_data.pkl"
+DATA_PATH = "data/processed_data.pkl"
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 data = pd.read_pickle(DATA_PATH)
