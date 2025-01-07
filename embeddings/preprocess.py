@@ -1,14 +1,19 @@
+import streamlit as st
 import nltk
-
-# Download necessary NLTK resources (should be downloaded once)
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
-
-
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
+
+# Function to download NLTK resources (using st.cache_resource to avoid redundant downloads)
+@st.cache_resource
+def download_nltk_resources():
+    nltk.download('punkt')
+    nltk.download('wordnet')
+    nltk.download('stopwords')
+
+# Download the resources at app startup
+download_nltk_resources()
+
 
 
 
