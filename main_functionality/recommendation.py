@@ -14,14 +14,14 @@ def generate_recommendations(user_input, data, embeddings_matrix, embedding_mode
 
 
     # Preprocess user input and compute its embedding
-    input_processed = preprocess_text(user_input)
     input_embedding = embedding_model.encode(user_input)
     
 
     # Calculate cosine similarity
     cosine_scores = cosine_similarity_single(input_embedding, embeddings_matrix)
     
-
+    
+    input_processed = preprocess_text(user_input)
     # Calculate Jaccard similarity based on 'Themes' and 'Tags'
     user_input_tokens = set(input_processed.split())
     data['Jaccard'] = data['Themes'].fillna('').apply(
