@@ -1,5 +1,15 @@
+
+
+
 import streamlit as st
 import nltk
+
+# Get the current NLTK data paths
+nltk_data_paths = nltk.data.path
+
+# Display it in Streamlit UI
+st.write("Current NLTK Data Paths:", nltk_data_paths)
+
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
