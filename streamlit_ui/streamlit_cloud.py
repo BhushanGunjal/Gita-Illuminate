@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from sentence_transformers import SentenceTransformer
-from main_functionality.recommendation import generate_recommendations
 import numpy as np
 import os
 import sys
