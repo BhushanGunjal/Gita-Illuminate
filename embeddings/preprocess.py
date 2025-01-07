@@ -2,9 +2,9 @@ import nltk
 
 
 # Function to download NLTK resources (using st.cache_resource to avoid redundant downloads)
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('wordnet')
+# nltk.download('stopwords')
 
 
 
