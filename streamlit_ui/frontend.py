@@ -46,7 +46,7 @@ def fetch_recommendations(input_text):
         - Reach out to a suicide prevention helpline near you:
           - [India](https://www.aasra.info): 91-9820466726 / 91-22-27546669
         """, unsafe_allow_html=True)
-        return None
+        
     
 
 

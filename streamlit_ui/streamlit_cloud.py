@@ -40,6 +40,14 @@ st.set_page_config(page_title="गीता-Illuminate  कृष्णं स�
 st.markdown('<h1 class="title">🔍 गीता-Illuminate 🔍</h1>', unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
+
+# Suicide-related keywords check function
+def check_suicide_keywords(input_text):
+    sensitive_keywords = ["suicide", "end my life", "kill myself", "hopeless", "no reason to live"]
+    return any(keyword in input_text.lower() for keyword in sensitive_keywords)
+
+
+
 # Background and style
 st.markdown(
     """
@@ -124,6 +132,19 @@ user_input = st.text_area("🔍 Describe your life situation or query:")
 # Recommendation Button
 if st.button("🌟 Get Divine Guidance"):
     if user_input.strip():
+
+        if check_suicide_keywords(user_input):
+            st.error("In the darkest moments, light emerges. We understand you might be going through a tough time. Please know that help is available.")
+            st.markdown("""
+            **💬 Immediate Support Resources:**
+            - Call a trusted friend or family member.
+            - Contact a mental health professional.
+            - Reach out to a suicide prevention helpline near you:
+              - [India](https://www.aasra.info): 91-9820466726 / 91-22-27546669
+            """, unsafe_allow_html=True)
+
+
+
         st.write("✨ Seeking wisdom from the Bhagavad Gita... Please wait.")
         recommendations = generate_recommendations(user_input, data, embeddings_matrix, embedding_model)
         if not recommendations.empty:

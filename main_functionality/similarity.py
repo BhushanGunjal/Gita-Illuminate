@@ -37,5 +37,6 @@ def jaccard_similarity(set1, set2):
     union = len(set1.union(set2))
     jac_sim =  intersection / union if union != 0 else 0
 
-    
+    # print('set1 ip:', set1)
+    # print('set2 emb:', set2)
     return jac_sim

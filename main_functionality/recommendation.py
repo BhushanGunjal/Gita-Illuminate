@@ -34,10 +34,15 @@ def generate_recommendations(user_input, data, embeddings_matrix, embedding_mode
     
 
     # Sort and get top recommendations
-    recommendations = data.sort_values(by='Similarity', ascending=False).head(1)
+    recommendations = data.sort_values(by='Similarity', ascending=False)
+
+    # for index, row in recommendations.iterrows():
+    #     print(f"{index}, {row['Similarity']}, {row['Jaccard']}")
+
     
-    
-    return recommendations[['Title', 'Verse', 'Sanskrit Anuvad', 'English Translation', 'Suggested Solution']]
+    final_recommendations = recommendations.head(1)
+
+    return final_recommendations[['Title', 'Verse', 'Sanskrit Anuvad', 'English Translation', 'Suggested Solution']]
 
 
 
